@@ -1,1 +1,228 @@
+<!doctype html>
+<html lang="ru" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.remove('no-js');</script>
 
+<title>Контакты — Дарья Лукьянова, уроки вокала и фортепиано в Казани</title>
+<meta name="description" content="Контакты преподавателя вокала и фортепиано Дарьи Лукьяновой: WhatsApp, Telegram, Instagram, адрес студии в Казани. Запись на занятия и консультации.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://darialukianova.com/contacts">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&display=swap" rel="stylesheet"/>
+
+<!-- Общие стили (нужны для меню) -->
+<link rel="stylesheet" href="styles.css">
+
+<style>
+    /* Базовые переменные для стиля Apple */
+    :root {
+      --apple-black: #1d1d1f;
+      --apple-gray: #86868b;
+      --apple-bg-light: #fafaf9;
+      --apple-border: rgba(29, 29, 31, 0.08);
+      --apple-border-hover: rgba(29, 29, 31, 0.2);
+      --apple-transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .lukianova-contacts {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      max-width: 1200px;
+      margin: 120px auto;
+      padding: 0 24px;
+      color: var(--apple-black);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .contacts-header { text-align: center; margin-bottom: 64px; }
+    .contacts-label { font-size: 10px; font-weight: 500; letter-spacing: 0.4em; text-transform: uppercase; color: var(--apple-gray); margin-bottom: 24px; display: block; }
+    .contacts-title { font-size: clamp(28px, 5vw, 40px); font-weight: 300; letter-spacing: -0.02em; margin: 0 0 20px 0; }
+    .contacts-subtitle { font-size: clamp(15px, 2vw, 18px); font-weight: 300; color: var(--apple-gray); max-width: 640px; margin: 0 auto; line-height: 1.5; }
+
+    .contacts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+
+    .contact-link { display: flex; align-items: center; padding: 24px; background: #ffffff; border: 1px solid var(--apple-border); border-radius: 32px; text-decoration: none; color: inherit; transition: var(--apple-transition); position: relative; overflow: hidden; }
+    .contact-link:hover { border-color: var(--apple-border-hover); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04); transform: translateY(-2px) scale(1.01); }
+
+    .icon-box { flex-shrink: 0; width: 56px; height: 56px; background: var(--apple-bg-light); border: 1px solid rgba(0, 0, 0, 0.03); border-radius: 18px; display: flex; align-items: center; justify-content: center; color: var(--apple-gray); transition: var(--apple-transition); }
+    .contact-link:hover .icon-box { color: var(--apple-black); background: #ffffff; }
+    .icon-box svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+
+    .contact-info { margin-left: 20px; flex-grow: 1; min-width: 0; }
+    .contact-name { font-size: 17px; font-weight: 500; margin: 0 0 4px 0; letter-spacing: -0.01em; }
+    .contact-desc { font-size: 14px; font-weight: 300; color: var(--apple-gray); margin: 4px 0 0 0; line-height: 1.4; white-space: normal; overflow: visible; }
+
+    .contact-arrow { margin-left: 12px; opacity: 0; transform: translateX(-12px); transition: var(--apple-transition); color: var(--apple-black); display: flex; align-items: center; }
+    .contact-link:hover .contact-arrow { opacity: 1; transform: translateX(0); }
+    .contact-arrow svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    @media (max-width: 768px) {
+      .lukianova-contacts { margin: 60px auto 100px; }
+      .contacts-grid { grid-template-columns: 1fr; gap: 12px; }
+      .contact-link { padding: 18px; border-radius: 24px; }
+      .icon-box { width: 48px; height: 48px; border-radius: 14px; }
+      .icon-box svg { width: 22px; height: 22px; }
+      .contact-name { font-size: 16px; }
+      .contact-desc { font-size: 13px; }
+    }
+</style>
+</head>
+<body>
+
+<!-- ШАПКА-МЕНЮ (всегда тёмная, т.к. фон белый) -->
+<div class="custom-vocal-homepage">
+  <nav class="cvh-nav cvh-nav-scrolled" aria-label="Главное меню">
+    <a href="index.html" class="cvh-nav-brand" aria-label="Дарья Лукьянова — на главную">
+      <img src="images/logo.png" alt="Дарья Лукьянова" class="cvh-nav-logo cvh-logo-light">
+      <img src="images/dasha_logo_black.png" alt="" aria-hidden="true" class="cvh-nav-logo cvh-logo-dark">
+    </a>
+    <ul class="cvh-nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="price.html">Прайс</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+    </ul>
+    <button class="cvh-burger" id="cvhBurger" aria-label="Открыть меню" aria-expanded="false" aria-controls="cvhMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="cvh-menu" id="cvhMenu" aria-hidden="true">
+    <button class="cvh-menu-close" id="cvhMenuClose" aria-label="Закрыть меню"><span></span><span></span></button>
+    <ul class="cvh-menu-list">
+      <li style="--i:1"><a href="index.html">Главная</a></li>
+      <li style="--i:2"><a href="price.html">Прайс</a></li>
+      <li style="--i:3"><a href="contacts.html">Контакты</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- СЕКЦИЯ КОНТАКТОВ -->
+<section class="lukianova-contacts">
+  <div class="contacts-header">
+    <span class="contacts-label">Связь со мной</span>
+    <h2 class="contacts-title">Контакты</h2>
+    <p class="contacts-subtitle">Выберите удобный способ связи для записи на занятие или консультации</p>
+  </div>
+
+  <div class="contacts-grid">
+    <!-- WhatsApp -->
+    <a href="https://wa.me/79172316025" target="_blank" rel="noopener noreferrer" class="contact-link">
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      </div>
+      <div class="contact-info">
+        <h3 class="contact-name">WhatsApp</h3>
+        <p class="contact-desc">Если работает</p>
+      </div>
+      <div class="contact-arrow">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </div>
+    </a>
+
+    <!-- Telegram -->
+    <a href="tg://resolve?domain=luchok_dashkenazy" class="contact-link">
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </div>
+      <div class="contact-info">
+        <h3 class="contact-name">Telegram</h3>
+        <p class="contact-desc">Удобный чат и звонки</p>
+      </div>
+      <div class="contact-arrow">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </div>
+    </a>
+
+    <!-- iMessage -->
+    <a href="sms:+79172316025" class="contact-link">
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="contact-info">
+        <h3 class="contact-name">iMessage</h3>
+        <p class="contact-desc">Для владельцев iPhone</p>
+      </div>
+      <div class="contact-arrow">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </div>
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://instagram.com/luchok.dashkenazy" target="_blank" rel="noopener noreferrer" class="contact-link">
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4"></circle><line x1="18" y1="6" x2="18.01" y2="6"></line></svg>
+      </div>
+      <div class="contact-info">
+        <h3 class="contact-name">Instagram</h3>
+        <p class="contact-desc">Наши уроки</p>
+      </div>
+      <div class="contact-arrow">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </div>
+    </a>
+
+    <!-- Location -->
+    <a href="https://yandex.ru/maps/-/CHv5JRNV" target="_blank" rel="noopener noreferrer" class="contact-link">
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      </div>
+      <div class="contact-info">
+        <h3 class="contact-name">Как найти?</h3>
+        <p class="contact-desc">Студия в Казани</p>
+      </div>
+      <div class="contact-arrow">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Скрипт меню (бургер, крестик, перебор букв) -->
+<script>
+(function(){
+  var root = document.querySelector('.custom-vocal-homepage');
+  var burger = document.getElementById('cvhBurger');
+  var menu = document.getElementById('cvhMenu');
+  var closeBtn = document.getElementById('cvhMenuClose');
+  if(!root || !burger || !menu) return;
+
+  function setOpen(open){
+    burger.classList.toggle('is-open', open);
+    menu.classList.toggle('is-open', open);
+    root.classList.toggle('cvh-menu-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+  }
+
+  burger.addEventListener('click', function(){ setOpen(!menu.classList.contains('is-open')); });
+  if(closeBtn) closeBtn.addEventListener('click', function(){ setOpen(false); });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && menu.classList.contains('is-open')) setOpen(false); });
+
+  // перебор букв при наведении (десктоп)
+  if(!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)){
+    var glyphs = 'АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЭЮЯ';
+    document.querySelectorAll('.cvh-nav-links a').forEach(function(link){
+      var finalText = link.textContent.trim();
+      link.addEventListener('mouseenter', function(){
+        var pos = 0; clearInterval(link._iv);
+        link._iv = setInterval(function(){
+          link.textContent = finalText.split('').map(function(ch,i){
+            return ch === ' ' ? ' ' : (i < pos ? finalText[i] : glyphs[Math.floor(Math.random()*glyphs.length)]);
+          }).join('');
+          pos += 1/2;
+          if(pos >= finalText.length){ clearInterval(link._iv); link.textContent = finalText; }
+        }, 38);
+      });
+      link.addEventListener('mouseleave', function(){ clearInterval(link._iv); link.textContent = finalText; });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
