@@ -115,6 +115,32 @@
 
 <div class="custom-vocal-homepage">
 
+  <!-- NAV -->
+  <nav class="cvh-nav" aria-label="Главное меню">
+    <a href="index.html" class="cvh-nav-brand">Дарья Лукьянова</a>
+
+    <!-- Десктоп-ссылки -->
+    <ul class="cvh-nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="price.html">Прайс</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+
+    <!-- Кнопка-бургер (моб.) -->
+    <button class="cvh-burger" id="cvhBurger" aria-label="Открыть меню" aria-expanded="false" aria-controls="cvhMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Полноэкранное моб-меню -->
+  <div class="cvh-menu" id="cvhMenu" aria-hidden="true">
+    <ul class="cvh-menu-list">
+      <li style="--i:1"><a href="index.html">Главная</a></li>
+      <li style="--i:2"><a href="price.html">Прайс</a></li>
+      <li style="--i:3"><a href="#contact">Контакты</a></li>
+    </ul>
+  </div>
+
   <!-- BANNER (16:9, на всю ширину) -->
   <div class="cvh-banner">
     <img class="cvh-banner-img" src="images/piano.jpg" alt="Уроки музыки в Казани — Дарья Лукьянова" fetchpriority="high" decoding="async" width="1920" height="1080"/>
