@@ -107,7 +107,7 @@ body{margin:0;}
 .custom-vocal-homepage .cvh-burger{
   display:none;position:relative;z-index:60;
   width:46px;height:46px;border:none;background:transparent;cursor:pointer;padding:0;
-  flex-direction:column;align-items:flex-end;justify-content:center;gap:7px;
+  flex-direction:column;align-items:center;justify-content:center;gap:7px;
 }
 .custom-vocal-homepage .cvh-burger span{
   display:block;width:28px;height:2px;background:var(--white);border-radius:2px;
@@ -128,8 +128,9 @@ body{margin:0;}
   transition:clip-path .7s var(--ease);
   pointer-events:none;
 }
-/* крестик закрытия внутри меню */
+/* отдельный крестик не используем — закрытие через сам бургер (он лежит над меню) */
 .custom-vocal-homepage .cvh-menu-close{
+  display:none;
   position:absolute;top:clamp(14px,2.4vw,26px);right:clamp(18px,5vw,60px);z-index:55;
   width:46px;height:46px;border:none;background:transparent;cursor:pointer;padding:0;
   opacity:0;transform:scale(.6) rotate(-90deg);
@@ -143,11 +144,10 @@ body{margin:0;}
 .custom-vocal-homepage .cvh-menu-close span:nth-child(2){transform:translate(-50%,-50%) rotate(-45deg);}
 .custom-vocal-homepage .cvh-menu-close:hover{transform:scale(1) rotate(0);}
 .custom-vocal-homepage .cvh-menu.is-open .cvh-menu-close{opacity:1;transform:scale(1) rotate(0);}
-/* при открытом меню прячем бургер, чтобы остался только аккуратный крестик */
-.custom-vocal-homepage.cvh-menu-open .cvh-burger{opacity:0;pointer-events:none;}
+/* бургер остаётся видимым и сам превращается в крестик (он над меню, z-index выше) */
 .custom-vocal-homepage .cvh-menu-list{
-  list-style:none;margin:0;padding:0;text-align:center;counter-reset:cvhm;
-  display:flex;flex-direction:column;gap:clamp(16px,3.4vw,28px);
+  list-style:none;margin:0;padding:0;text-align:left;counter-reset:cvhm;
+  display:flex;flex-direction:column;align-items:flex-start;gap:clamp(16px,3.4vw,28px);
 }
 .custom-vocal-homepage .cvh-menu-list a{
   position:relative;display:inline-flex;align-items:baseline;gap:clamp(12px,2vw,20px);
@@ -175,9 +175,9 @@ body{margin:0;}
   transition-delay:calc(.18s + var(--i) * .09s);
 }
 /* анимация бургера в «X» */
-.custom-vocal-homepage .cvh-burger.is-open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+.custom-vocal-homepage .cvh-burger.is-open span:nth-child(1){width:28px;transform:translateY(9px) rotate(45deg);}
 .custom-vocal-homepage .cvh-burger.is-open span:nth-child(2){opacity:0;transform:scaleX(0);}
-.custom-vocal-homepage .cvh-burger.is-open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+.custom-vocal-homepage .cvh-burger.is-open span:nth-child(3){width:28px;transform:translateY(-9px) rotate(-45deg);}
 
 /* переключение десктоп/мобайл */
 @media (max-width:768px){
