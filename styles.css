@@ -35,7 +35,8 @@
 .custom-vocal-homepage h2,
 .custom-vocal-homepage h3{margin:0;font-weight:200;letter-spacing:-.025em;}
 .custom-vocal-homepage p{margin:0;}
-.custom-vocal-homepage a{color:inherit;text-decoration:none;}
+.custom-vocal-homepage a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent;}
+.custom-vocal-homepage button{-webkit-tap-highlight-color:transparent;}
 .custom-vocal-homepage img{display:block;max-width:100%;height:auto;}
 .custom-vocal-homepage ::selection{background:var(--ink);color:var(--white);}
 .custom-vocal-homepage .material-symbols-outlined{
@@ -74,18 +75,15 @@ body{margin:0;}
   box-shadow:0 1px 0 var(--line-10);
 }
 
-/* логотип — два варианта (белый/чёрный) с кросс-фейдом */
-.custom-vocal-homepage .cvh-nav-brand{position:relative;display:inline-flex;align-items:center;z-index:60;}
-.custom-vocal-homepage .cvh-nav-logo{
-  height:clamp(30px,3.4vw,42px);width:auto;display:block;
-  transition:opacity .5s var(--ease);
-}
-/* чёрный лог накладывается поверх белого и проявляется при скролле */
-.custom-vocal-homepage .cvh-logo-dark{position:absolute;left:0;top:0;opacity:0;}
+/* логотип — два варианта (белый/чёрный). Скрытый НЕ рендерится (display:none),
+   поэтому «битой» картинки и серого квадрата возникнуть не может. */
+.custom-vocal-homepage .cvh-nav-brand{display:inline-flex;align-items:center;z-index:60;}
+.custom-vocal-homepage .cvh-nav-logo{height:clamp(30px,3.4vw,42px);width:auto;display:block;}
+.custom-vocal-homepage .cvh-logo-dark{display:none;}
 .custom-vocal-homepage .cvh-nav-scrolled .cvh-logo-light,
-.custom-vocal-homepage.cvh-menu-open .cvh-logo-light{opacity:0;}
+.custom-vocal-homepage.cvh-menu-open .cvh-logo-light{display:none;}
 .custom-vocal-homepage .cvh-nav-scrolled .cvh-logo-dark,
-.custom-vocal-homepage.cvh-menu-open .cvh-logo-dark{opacity:1;}
+.custom-vocal-homepage.cvh-menu-open .cvh-logo-dark{display:block;}
 
 /* десктоп-ссылки — по умолчанию белые */
 .custom-vocal-homepage .cvh-nav-links{
@@ -109,12 +107,14 @@ body{margin:0;}
 .custom-vocal-homepage .cvh-burger{
   display:none;position:relative;z-index:60;
   width:46px;height:46px;border:none;background:transparent;cursor:pointer;padding:0;
-  flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  flex-direction:column;align-items:flex-end;justify-content:center;gap:7px;
 }
 .custom-vocal-homepage .cvh-burger span{
-  display:block;width:26px;height:2px;background:var(--white);border-radius:2px;
-  transition:transform .45s var(--ease),opacity .3s var(--ease),background .5s var(--ease);
+  display:block;width:28px;height:2px;background:var(--white);border-radius:2px;
+  transition:width .4s var(--ease),transform .45s var(--ease),opacity .3s var(--ease),background .5s var(--ease);
 }
+.custom-vocal-homepage .cvh-burger span:nth-child(2){width:18px;}
+.custom-vocal-homepage .cvh-burger:hover span:nth-child(2){width:28px;}
 /* тёмный бургер при скролле и при открытом меню */
 .custom-vocal-homepage .cvh-nav-scrolled .cvh-burger span,
 .custom-vocal-homepage.cvh-menu-open .cvh-burger span{background:var(--ink);}
@@ -128,17 +128,41 @@ body{margin:0;}
   transition:clip-path .7s var(--ease);
   pointer-events:none;
 }
+/* крестик закрытия внутри меню */
+.custom-vocal-homepage .cvh-menu-close{
+  position:absolute;top:clamp(14px,2.4vw,26px);right:clamp(18px,5vw,60px);z-index:55;
+  width:46px;height:46px;border:none;background:transparent;cursor:pointer;padding:0;
+  opacity:0;transform:scale(.6) rotate(-90deg);
+  transition:opacity .5s var(--ease) .25s,transform .5s var(--ease) .25s;
+}
+.custom-vocal-homepage .cvh-menu-close span{
+  position:absolute;top:50%;left:50%;width:26px;height:2px;background:var(--ink);border-radius:2px;
+  transition:background .3s var(--ease);
+}
+.custom-vocal-homepage .cvh-menu-close span:nth-child(1){transform:translate(-50%,-50%) rotate(45deg);}
+.custom-vocal-homepage .cvh-menu-close span:nth-child(2){transform:translate(-50%,-50%) rotate(-45deg);}
+.custom-vocal-homepage .cvh-menu-close:hover{transform:scale(1) rotate(0);}
+.custom-vocal-homepage .cvh-menu.is-open .cvh-menu-close{opacity:1;transform:scale(1) rotate(0);}
+/* при открытом меню прячем бургер, чтобы остался только аккуратный крестик */
+.custom-vocal-homepage.cvh-menu-open .cvh-burger{opacity:0;pointer-events:none;}
 .custom-vocal-homepage .cvh-menu-list{
-  list-style:none;margin:0;padding:0;text-align:center;
-  display:flex;flex-direction:column;gap:clamp(20px,4vw,34px);
+  list-style:none;margin:0;padding:0;text-align:center;counter-reset:cvhm;
+  display:flex;flex-direction:column;gap:clamp(16px,3.4vw,28px);
 }
 .custom-vocal-homepage .cvh-menu-list a{
-  display:inline-block;font-weight:200;letter-spacing:-.02em;
-  font-size:clamp(34px,9vw,58px);color:var(--ink);
+  position:relative;display:inline-flex;align-items:baseline;gap:clamp(12px,2vw,20px);
+  font-weight:200;letter-spacing:-.02em;font-size:clamp(34px,9vw,56px);color:var(--ink);
   opacity:0;transform:translateY(28px);filter:blur(8px);
-  transition:opacity .6s var(--ease),transform .6s var(--ease),filter .6s var(--ease),color .3s var(--ease);
+  transition:opacity .6s var(--ease),transform .6s var(--ease),filter .6s var(--ease),color .4s var(--ease);
+}
+/* порядковый номер пункта */
+.custom-vocal-homepage .cvh-menu-list a::before{
+  counter-increment:cvhm;content:"0" counter(cvhm);
+  font-size:clamp(11px,1.6vw,14px);font-weight:500;letter-spacing:.12em;
+  color:var(--gray);transition:color .4s var(--ease);
 }
 .custom-vocal-homepage .cvh-menu-list a:hover{color:var(--gray);}
+.custom-vocal-homepage .cvh-menu-list a:hover::before{color:var(--ink);}
 
 /* открытое состояние */
 .custom-vocal-homepage.cvh-menu-open{overflow:hidden;}
