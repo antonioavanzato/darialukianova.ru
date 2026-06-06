@@ -50,41 +50,62 @@ body{margin:0;}
 
 /* ---------- НАВИГАЦИЯ ПОВЕРХ БАННЕРА ---------- */
 .custom-vocal-homepage .cvh-nav{
-  position:absolute;top:0;left:0;right:0;z-index:30;
+  position:fixed;top:0;left:0;right:0;z-index:30;
   display:flex;align-items:center;justify-content:space-between;
-  padding:clamp(16px,2.4vw,30px) clamp(20px,5vw,64px);
+  padding:clamp(12px,2vw,22px) clamp(20px,5vw,64px);
+  background:transparent;
+  transition:background .5s var(--ease),box-shadow .5s var(--ease),padding .5s var(--ease);
 }
-.custom-vocal-homepage .cvh-nav-brand{
-  font-size:clamp(15px,1.4vw,18px);font-weight:500;letter-spacing:.02em;color:var(--ink);
-  text-shadow:0 1px 14px rgba(255,255,255,.55);z-index:60;position:relative;
-  transition:opacity .4s var(--ease),color .4s var(--ease);
+/* тёмная шапка при скролле на белый фон */
+.custom-vocal-homepage .cvh-nav.cvh-nav-scrolled{
+  background:rgba(255,255,255,.86);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  box-shadow:0 1px 0 var(--line-10);
 }
-/* десктоп-ссылки */
+
+/* логотип */
+.custom-vocal-homepage .cvh-nav-brand{display:inline-flex;align-items:center;z-index:60;position:relative;}
+.custom-vocal-homepage .cvh-nav-logo{
+  height:clamp(30px,3.4vw,42px);width:auto;display:block;
+  /* по умолчанию (на фото) — белый */
+  filter:brightness(0) invert(1);
+  transition:filter .5s var(--ease),opacity .4s var(--ease);
+}
+/* при скролле и при открытом меню — натуральный (тёмный) логотип */
+.custom-vocal-homepage .cvh-nav-scrolled .cvh-nav-logo,
+.custom-vocal-homepage.cvh-menu-open .cvh-nav-logo{filter:none;}
+
+/* десктоп-ссылки — по умолчанию белые */
 .custom-vocal-homepage .cvh-nav-links{
   display:flex;gap:clamp(20px,2.6vw,40px);list-style:none;margin:0;padding:0;
 }
 .custom-vocal-homepage .cvh-nav-links a{
   position:relative;font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--ink);padding:6px 2px;text-shadow:0 1px 14px rgba(255,255,255,.55);
-  transition:color .4s var(--ease);
+  color:var(--white);padding:6px 2px;
+  transition:color .5s var(--ease);
 }
 .custom-vocal-homepage .cvh-nav-links a::after{
   content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;
-  background:var(--ink);transform:scaleX(0);transform-origin:right;
+  background:currentColor;transform:scaleX(0);transform-origin:right;
   transition:transform .45s var(--ease);
 }
 .custom-vocal-homepage .cvh-nav-links a:hover::after{transform:scaleX(1);transform-origin:left;}
+/* тёмные ссылки при скролле */
+.custom-vocal-homepage .cvh-nav-scrolled .cvh-nav-links a{color:var(--ink);}
 
-/* кнопка-бургер (скрыта на десктопе) */
+/* кнопка-бургер (скрыта на десктопе) — по умолчанию белая */
 .custom-vocal-homepage .cvh-burger{
   display:none;position:relative;z-index:60;
   width:46px;height:46px;border:none;background:transparent;cursor:pointer;padding:0;
   flex-direction:column;align-items:center;justify-content:center;gap:6px;
 }
 .custom-vocal-homepage .cvh-burger span{
-  display:block;width:26px;height:2px;background:var(--ink);border-radius:2px;
-  transition:transform .45s var(--ease),opacity .3s var(--ease),background .4s var(--ease);
+  display:block;width:26px;height:2px;background:var(--white);border-radius:2px;
+  transition:transform .45s var(--ease),opacity .3s var(--ease),background .5s var(--ease);
 }
+/* тёмный бургер при скролле и при открытом меню */
+.custom-vocal-homepage .cvh-nav-scrolled .cvh-burger span,
+.custom-vocal-homepage.cvh-menu-open .cvh-burger span{background:var(--ink);}
 
 /* полноэкранное меню */
 .custom-vocal-homepage .cvh-menu{
