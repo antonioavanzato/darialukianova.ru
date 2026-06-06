@@ -246,7 +246,7 @@ body{margin:0;}
 .custom-vocal-homepage .cvh-scroll:hover .cvh-scroll-arrow{color:#000;}
 /* высокие/узкие экраны: не даём баннеру занять весь экран целиком */
 @media (max-width:680px){
-  .custom-vocal-homepage .cvh-banner{max-height:80vh;}
+  .custom-vocal-homepage .cvh-banner{aspect-ratio:4/5; max-height:80vh;}
 }
 
 /* ---------- сетка / секции ---------- */
