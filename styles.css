@@ -63,17 +63,18 @@ body{margin:0;}
   box-shadow:0 1px 0 var(--line-10);
 }
 
-/* логотип */
-.custom-vocal-homepage .cvh-nav-brand{display:inline-flex;align-items:center;z-index:60;position:relative;}
+/* логотип — два варианта (белый/чёрный) с кросс-фейдом */
+.custom-vocal-homepage .cvh-nav-brand{position:relative;display:inline-flex;align-items:center;z-index:60;}
 .custom-vocal-homepage .cvh-nav-logo{
   height:clamp(30px,3.4vw,42px);width:auto;display:block;
-  /* по умолчанию (на фото) — белый */
-  filter:brightness(0) invert(1);
-  transition:filter .5s var(--ease),opacity .4s var(--ease);
+  transition:opacity .5s var(--ease);
 }
-/* при скролле и при открытом меню — натуральный (тёмный) логотип */
-.custom-vocal-homepage .cvh-nav-scrolled .cvh-nav-logo,
-.custom-vocal-homepage.cvh-menu-open .cvh-nav-logo{filter:none;}
+/* чёрный лог накладывается поверх белого и проявляется при скролле */
+.custom-vocal-homepage .cvh-logo-dark{position:absolute;left:0;top:0;opacity:0;}
+.custom-vocal-homepage .cvh-nav-scrolled .cvh-logo-light,
+.custom-vocal-homepage.cvh-menu-open .cvh-logo-light{opacity:0;}
+.custom-vocal-homepage .cvh-nav-scrolled .cvh-logo-dark,
+.custom-vocal-homepage.cvh-menu-open .cvh-logo-dark{opacity:1;}
 
 /* десктоп-ссылки — по умолчанию белые */
 .custom-vocal-homepage .cvh-nav-links{
@@ -160,6 +161,16 @@ body{margin:0;}
   aspect-ratio:16/9;
   overflow:hidden;
   background:var(--stone-100);
+}
+@media (prefers-reduced-motion: no-preference){
+  .custom-vocal-homepage .cvh-banner{animation:cvhBannerIn 1.5s var(--ease) both;}
+  @keyframes cvhBannerIn{
+    from{opacity:0;transform:scale(1.05);}
+    to{opacity:1;transform:scale(1);}
+  }
+  /* стрелка «листайте» проявляется чуть позже баннера */
+  .custom-vocal-homepage .cvh-scroll{animation:cvhScrollIn .8s var(--ease) both;animation-delay:1.1s;}
+  @keyframes cvhScrollIn{from{opacity:0;transform:translateX(-50%) translateY(10px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
 }
 .custom-vocal-homepage .cvh-banner-img{
   position:absolute;inset:0;
