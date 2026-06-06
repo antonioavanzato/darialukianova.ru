@@ -69,6 +69,59 @@
   update();
 })();
 
+/* Индикатор прогресса чтения */
+(function(){
+  var bar = document.getElementById('cvhProgress');
+  if(!bar) return;
+  var ticking = false;
+  function update(){
+    var h = document.documentElement;
+    var max = (h.scrollHeight - h.clientHeight) || 1;
+    var p = Math.min(1, Math.max(0, window.scrollY / max));
+    bar.style.transform = 'scaleX(' + p + ')';
+    ticking = false;
+  }
+  function onScroll(){ if(!ticking){ requestAnimationFrame(update); ticking = true; } }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+/* Анимация «набегающих» счётчиков */
+(function(){
+  var counters = document.querySelectorAll('.cvh-count');
+  if(!counters.length) return;
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function run(el){
+    var target = parseInt(el.getAttribute('data-target'), 10) || 0;
+    var suffix = el.getAttribute('data-suffix') || '';
+    if(reduce){ el.textContent = target + suffix; return; }
+    var dur = 1600, start = null;
+    function step(ts){
+      if(start === null) start = ts;
+      var t = Math.min(1, (ts - start) / dur);
+      var eased = 1 - Math.pow(1 - t, 3); // плавное замедление к финалу
+      el.textContent = Math.round(target * eased) + suffix;
+      if(t < 1) requestAnimationFrame(step);
+      else el.textContent = target + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+
+  if(!('IntersectionObserver' in window)){
+    counters.forEach(run);
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ run(e.target); io.unobserve(e.target); }
+    });
+  }, { threshold: .6 });
+  counters.forEach(function(el){ io.observe(el); });
+})();
+
 /* Эффект «перебора букв» при наведении на пункты меню (десктоп) */
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
