@@ -68,3 +68,39 @@
   window.addEventListener('resize', update);
   update();
 })();
+
+/* Эффект «перебора букв» при наведении на пункты меню (десктоп) */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var links = document.querySelectorAll('.cvh-nav-links a');
+  if(!links.length) return;
+  var glyphs = 'АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЭЮЯ';
+
+  links.forEach(function(link){
+    var finalText = link.textContent.trim();
+    link.setAttribute('data-label', finalText);
+
+    link.addEventListener('mouseenter', function(){
+      var pos = 0;
+      clearInterval(link._scrambleIv);
+      link._scrambleIv = setInterval(function(){
+        link.textContent = finalText.split('').map(function(ch, i){
+          if (ch === ' ') return ' ';
+          if (i < pos) return finalText[i];
+          return glyphs[Math.floor(Math.random() * glyphs.length)];
+        }).join('');
+        pos += 1 / 2;
+        if (pos >= finalText.length){
+          clearInterval(link._scrambleIv);
+          link.textContent = finalText;
+        }
+      }, 38);
+    });
+
+    // если увели курсор раньше — гарантированно вернём исходный текст
+    link.addEventListener('mouseleave', function(){
+      clearInterval(link._scrambleIv);
+      link.textContent = finalText;
+    });
+  });
+})();
