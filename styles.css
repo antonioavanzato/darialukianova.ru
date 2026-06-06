@@ -50,7 +50,7 @@ body{margin:0;}
 
 /* ---------- НАВИГАЦИЯ ПОВЕРХ БАННЕРА ---------- */
 .custom-vocal-homepage .cvh-nav{
-  position:fixed;top:0;left:0;right:0;z-index:30;
+  position:fixed;top:0;left:0;right:0;z-index:60;
   display:flex;align-items:center;justify-content:space-between;
   padding:clamp(12px,2vw,22px) clamp(20px,5vw,64px);
   background:transparent;
