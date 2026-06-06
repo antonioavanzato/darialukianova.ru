@@ -47,3 +47,24 @@
     if(e.key === 'Escape' && menu.classList.contains('is-open')) setOpen(false);
   });
 })();
+
+/* Смена цвета шапки: белая поверх баннера → тёмная на белом фоне */
+(function(){
+  var nav = document.querySelector('.cvh-nav');
+  var banner = document.querySelector('.cvh-banner');
+  if(!nav) return;
+  var ticking = false;
+
+  function update(){
+    // порог переключения — почти весь баннер прокручен (минус высота шапки)
+    var threshold = banner ? (banner.offsetHeight - nav.offsetHeight - 8) : 80;
+    nav.classList.toggle('cvh-nav-scrolled', window.scrollY > threshold);
+    ticking = false;
+  }
+  function onScroll(){
+    if(!ticking){ window.requestAnimationFrame(update); ticking = true; }
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  window.addEventListener('resize', update);
+  update();
+})();
