@@ -3,91 +3,146 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Если JS включён — убираем класс no-js (тогда работают анимации появления) -->
 <script>document.documentElement.classList.remove('no-js');</script>
 
-<title>Контакты — Дарья Лукьянова, уроки вокала и фортепиано в Казани</title>
-<meta name="description" content="Контакты преподавателя вокала и фортепиано Дарьи Лукьяновой: WhatsApp, Telegram, Instagram, адрес студии в Казани. Запись на занятия и консультации.">
+<!-- SEO: заголовок и описание. Замените при необходимости. -->
+<title>Уроки вокала и фортепиано в Казани — Дарья Лукьянова</title>
+<meta name="description" content="Частный преподаватель вокала и фортепиано в Казани и онлайн. Эстрадный и академический вокал, фортепиано, сольфеджио и теория музыки. 10+ лет опыта, 500+ учеников.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://darialukianova.com/contacts">
+<link rel="canonical" href="https://darialukianova.com/">
 
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Уроки вокала и фортепиано в Казани — Дарья Лукьянова">
+<meta property="og:description" content="Индивидуальные уроки музыки для детей и взрослых. Вокал, фортепиано, сольфеджио.">
+<meta property="og:locale" content="ru_RU">
+
+<!-- Шрифты -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
 
-<!-- Общие стили (токены, меню, анимации) -->
+<!-- Стили сайта -->
 <link rel="stylesheet" href="styles.css?v=3">
 
-<style>
-  /* Контакты в едином стиле сайта (на токенах --ink/--gray/--r из styles.css) */
-  .custom-vocal-homepage .cvh-contacts-grid{
-    display:grid;grid-template-columns:1fr;gap:clamp(16px,1.6vw,24px);
-    max-width:980px;margin:clamp(48px,6vw,80px) auto 0;
-  }
-  @media(min-width:680px){.custom-vocal-homepage .cvh-contacts-grid{grid-template-columns:repeat(2,1fr);}}
-
-  .custom-vocal-homepage .cvh-contact{
-    position:relative;display:flex;align-items:center;gap:clamp(16px,1.8vw,22px);
-    padding:clamp(22px,2.4vw,30px);border-radius:var(--r);
-    background:var(--white);border:1px solid var(--line-10);overflow:hidden;isolation:isolate;
-    transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .55s var(--ease);
-  }
-  .custom-vocal-homepage .cvh-contact>*{position:relative;z-index:1;}
-  .custom-vocal-homepage .cvh-contact::before{
-    content:"";position:absolute;inset:0;z-index:0;background:var(--ink);
-    transform:translateY(101%);transition:transform .6s var(--ease);
-  }
-  .custom-vocal-homepage .cvh-contact:hover::before{transform:translateY(0);}
-  .custom-vocal-homepage .cvh-contact:hover{transform:translateY(-4px);border-color:var(--ink);box-shadow:0 30px 60px -30px rgba(0,0,0,.42);}
-
-  .custom-vocal-homepage .cvh-contact-ico{
-    flex:none;width:56px;height:56px;border-radius:999px;border:1px solid var(--line-20);
-    display:flex;align-items:center;justify-content:center;color:var(--ink);
-    transition:color .5s var(--ease),border-color .5s var(--ease),transform .55s var(--ease);
-  }
-  .custom-vocal-homepage .cvh-contact:hover .cvh-contact-ico{color:var(--white);border-color:rgba(255,255,255,.3);transform:scale(1.05);}
-  .custom-vocal-homepage .cvh-contact-ico svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
-
-  .custom-vocal-homepage .cvh-contact-info{flex:1;min-width:0;}
-  .custom-vocal-homepage .cvh-contact-name{font-size:17px;font-weight:500;letter-spacing:-.01em;color:var(--ink);transition:color .5s var(--ease);}
-  .custom-vocal-homepage .cvh-contact:hover .cvh-contact-name{color:var(--white);}
-  .custom-vocal-homepage .cvh-contact-desc{font-size:14px;font-weight:300;color:var(--gray);margin-top:4px;line-height:1.4;transition:color .5s var(--ease);}
-  .custom-vocal-homepage .cvh-contact:hover .cvh-contact-desc{color:rgba(255,255,255,.72);}
-
-  .custom-vocal-homepage .cvh-contact-arrow{
-    flex:none;color:var(--ink);opacity:0;transform:translateX(-8px);
-    transition:opacity .5s var(--ease),transform .5s var(--ease),color .5s var(--ease);display:flex;
-  }
-  .custom-vocal-homepage .cvh-contact:hover .cvh-contact-arrow{opacity:1;transform:translateX(0);color:var(--white);}
-  .custom-vocal-homepage .cvh-contact-arrow svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-
-  /* лёгкий каскад появления карточек */
-  .custom-vocal-homepage .cvh-contacts-grid .cvh-x:nth-child(2){transition-delay:.07s;}
-  .custom-vocal-homepage .cvh-contacts-grid .cvh-x:nth-child(3){transition-delay:.14s;}
-  .custom-vocal-homepage .cvh-contacts-grid .cvh-x:nth-child(4){transition-delay:.21s;}
-  .custom-vocal-homepage .cvh-contacts-grid .cvh-x:nth-child(5){transition-delay:.28s;}
-</style>
+<!-- SEO · Schema.org (JSON-LD). Замените telephone и sameAs перед публикацией. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "EducationalOrganization"],
+      "@id": "https://darialukianova.com/#business",
+      "name": "Дарья Лукьянова — преподаватель вокала и фортепиано",
+      "description": "Частный преподаватель вокала и фортепиано в Казани и онлайн. Эстрадный и академический вокал, фортепиано, сольфеджио и теория музыки. 10+ лет опыта, 500+ учеников.",
+      "url": "https://darialukianova.com/",
+      "image": "images/daria.jpg",
+      "telephone": "+7-XXX-XXX-XX-XX",
+      "priceRange": "₽₽",
+      "currenciesAccepted": "RUB",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Большая Красная, 15к1",
+        "addressLocality": "Казань",
+        "addressRegion": "Республика Татарстан",
+        "postalCode": "420015",
+        "addressCountry": "RU"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 55.8093, "longitude": 49.1078 },
+      "areaServed": [
+        { "@type": "City", "name": "Казань" },
+        { "@type": "AdministrativeArea", "name": "Онлайн (вся Россия)" }
+      ],
+      "availableLanguage": { "@type": "Language", "name": "Russian" },
+      "founder": { "@id": "https://darialukianova.com/#person" },
+      "employee": { "@id": "https://darialukianova.com/#person" },
+      "sameAs": [],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Направления",
+        "itemListElement": [
+          { "@type": "Offer", "url": "price.html", "itemOffered": { "@type": "Service", "name": "Эстрадный и академический вокал", "serviceType": "Уроки вокала" } },
+          { "@type": "Offer", "url": "price.html", "itemOffered": { "@type": "Service", "name": "Уроки фортепиано", "serviceType": "Уроки фортепиано" } },
+          { "@type": "Offer", "url": "price.html", "itemOffered": { "@type": "Service", "name": "Сольфеджио и теория", "serviceType": "Теория музыки" } },
+          { "@type": "Offer", "url": "price.html", "itemOffered": { "@type": "Service", "name": "Хор и групповые занятия", "serviceType": "Групповые занятия" } }
+        ]
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://darialukianova.com/#person",
+      "name": "Дарья Лукьянова",
+      "jobTitle": "Преподаватель вокала и фортепиано",
+      "description": "Профессиональный музыкант и дипломированный педагог. Методика основана на бережном отношении к голосу, психологическом комфорте и индивидуальном подборе программы.",
+      "image": "images/daria.jpg",
+      "url": "https://darialukianova.com/o-sebe",
+      "worksFor": { "@id": "https://darialukianova.com/#business" },
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "Казанская консерватория" },
+      "award": "Лауреат международных конкурсов",
+      "knowsAbout": ["вокал", "фортепиано", "сольфеджио", "нотная грамота", "теория музыки"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://darialukianova.com/#website",
+      "url": "https://darialukianova.com/",
+      "name": "Дарья Лукьянова — уроки вокала и фортепиано в Казани",
+      "inLanguage": "ru-RU",
+      "publisher": { "@id": "https://darialukianova.com/#business" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://darialukianova.com/#webpage",
+      "url": "https://darialukianova.com/",
+      "name": "Уроки вокала и фортепиано в Казани — Дарья Лукьянова",
+      "isPartOf": { "@id": "https://darialukianova.com/#website" },
+      "about": { "@id": "https://darialukianova.com/#business" },
+      "inLanguage": "ru-RU"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://darialukianova.com/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://darialukianova.com/" }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
 <div class="custom-vocal-homepage">
 
-  <!-- ШАПКА-МЕНЮ (всегда тёмная, т.к. фон белый) -->
-  <nav class="cvh-nav cvh-nav-scrolled" aria-label="Главное меню">
+  <!-- Индикатор прогресса чтения -->
+  <div class="cvh-progress" id="cvhProgress" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav class="cvh-nav" aria-label="Главное меню">
     <a href="index.html" class="cvh-nav-brand" aria-label="Дарья Лукьянова — на главную">
       <img src="images/logo.png" alt="Дарья Лукьянова" class="cvh-nav-logo cvh-logo-light" onerror="this.style.display='none'">
       <img src="images/dasha_logo_black.png" alt="" aria-hidden="true" class="cvh-nav-logo cvh-logo-dark" onerror="this.style.display='none'">
     </a>
+
+    <!-- Десктоп-ссылки -->
     <ul class="cvh-nav-links">
       <li><a href="index.html">Главная</a></li>
       <li><a href="price.html">Прайс</a></li>
       <li><a href="contacts.html">Контакты</a></li>
     </ul>
+
+    <!-- Кнопка-бургер (моб.) -->
     <button class="cvh-burger" id="cvhBurger" aria-label="Открыть меню" aria-expanded="false" aria-controls="cvhMenu">
       <span></span><span></span><span></span>
     </button>
   </nav>
+
+  <!-- Полноэкранное моб-меню -->
   <div class="cvh-menu" id="cvhMenu" aria-hidden="true">
-    <button class="cvh-menu-close" id="cvhMenuClose" aria-label="Закрыть меню"><span></span><span></span></button>
+    <button class="cvh-menu-close" id="cvhMenuClose" aria-label="Закрыть меню">
+      <span></span><span></span>
+    </button>
     <ul class="cvh-menu-list">
       <li style="--i:1"><a href="index.html">Главная</a></li>
       <li style="--i:2"><a href="price.html">Прайс</a></li>
@@ -95,146 +150,157 @@
     </ul>
   </div>
 
-  <!-- КОНТАКТЫ -->
-  <section class="cvh-section cvh-wrap" id="contacts">
-    <div class="cvh-head cvh-reveal">
-      <span class="cvh-eyebrow">Связь со мной</span>
-      <h2 class="cvh-clip">Контакты</h2>
-      <p class="cvh-lede">Выберите удобный способ связи для записи на занятие или консультации.</p>
+  <!-- BANNER (16:9, на всю ширину) -->
+  <div class="cvh-banner">
+    <img class="cvh-banner-img" src="images/piano.jpg" alt="Уроки музыки в Казани — Дарья Лукьянова" fetchpriority="high" decoding="async" width="1920" height="1080"/>
+    <div class="cvh-banner-fade"></div>
+    <a href="#services" class="cvh-scroll" aria-label="Листайте вниз">
+      <span class="cvh-scroll-arrow material-symbols-outlined">keyboard_arrow_down</span>
+      <span class="cvh-scroll-text">листайте</span>
+    </a>
+  </div>
+
+  <!-- HERO -->
+  <header class="cvh-hero cvh-wrap">
+    <div class="cvh-hero-inner">
+      <span class="cvh-eyebrow cvh-rise cvh-d1">Преподаватель · Казань &amp; Онлайн</span>
+      <h1 class="cvh-rise cvh-d2">
+        ПРЕПОДАВАТЕЛЬ <span class="em">ВОКАЛА</span> И <span class="em">ФОРТЕПИАНО</span> В КАЗАНИ — ДАРЬЯ ЛУКЬЯНОВА
+      </h1>
+      <p class="cvh-sub cvh-rise cvh-d3">
+        Индивидуальные уроки музыки для детей и взрослых. Помогаю выстроить техническую базу, развить музыкальное мышление и уверенное исполнение на любом уровне подготовки.
+      </p>
+      <div class="cvh-trust cvh-rise cvh-d4">
+        <span class="cvh-chip"><span class="material-symbols-outlined">verified</span>10+ лет опыта</span>
+        <span class="cvh-chip"><span class="material-symbols-outlined">groups</span>500+ учеников</span>
+        <span class="cvh-chip"><span class="material-symbols-outlined">location_on</span>Казань и Онлайн</span>
+      </div>
     </div>
+  </header>
 
-    <div class="cvh-contacts-grid">
-      <!-- WhatsApp -->
-      <a href="https://wa.me/79172316025" target="_blank" rel="noopener noreferrer" class="cvh-contact cvh-x cvh-left">
-        <span class="cvh-contact-ico">
-          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-        </span>
-        <span class="cvh-contact-info">
-          <span class="cvh-contact-name" style="display:block">WhatsApp</span>
-          <span class="cvh-contact-desc" style="display:block">Если работает</span>
-        </span>
-        <span class="cvh-contact-arrow">
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </span>
+  <!-- SERVICES -->
+  <section class="cvh-section cvh-wrap" id="services">
+    <div class="cvh-head cvh-reveal">
+      <span class="cvh-eyebrow">Обучение</span>
+      <h2 class="cvh-clip">Направления</h2>
+      <p class="cvh-lede">Комплексный подход к музыкальному обучению, адаптированный под ваш уровень, возраст и музыкальные вкусы.</p>
+    </div>
+    <div class="cvh-services-grid">
+      <a href="price.html" class="cvh-svc cvh-x cvh-left">
+        <div class="cvh-svc-ico"><span class="material-symbols-outlined">mic</span></div>
+        <h3>Эстрадный и академический вокал</h3>
+        <p>Осознанное развитие голоса и музыкальных навыков с опорой на технику и понимание процесса. Работа с дыханием, раскрытие природного тембра, освоение вокальных приемов, снятие зажимов и свободное звукоизвлечение.</p>
+        <span class="cvh-svc-cta"><span class="lbl">Узнать стоимость</span><span class="material-symbols-outlined">arrow_forward</span></span>
       </a>
-
-      <!-- Telegram -->
-      <a href="tg://resolve?domain=luchok_dashkenazy" class="cvh-contact cvh-x cvh-right">
-        <span class="cvh-contact-ico">
-          <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-        </span>
-        <span class="cvh-contact-info">
-          <span class="cvh-contact-name" style="display:block">Telegram</span>
-          <span class="cvh-contact-desc" style="display:block">Удобный чат и звонки</span>
-        </span>
-        <span class="cvh-contact-arrow">
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </span>
+      <a href="price.html" class="cvh-svc cvh-x cvh-right">
+        <div class="cvh-svc-ico"><span class="material-symbols-outlined">piano</span></div>
+        <h3>Уроки фортепиано</h3>
+        <p>Обучение с нуля и для продолжающих детей и взрослых. Постановка рук, чтение с листа, формирование и улучшение технической базы, разбор и исполнение композиций.</p>
+        <span class="cvh-svc-cta"><span class="lbl">Узнать стоимость</span><span class="material-symbols-outlined">arrow_forward</span></span>
       </a>
-
-      <!-- iMessage -->
-      <a href="sms:+79172316025" class="cvh-contact cvh-x cvh-left">
-        <span class="cvh-contact-ico">
-          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </span>
-        <span class="cvh-contact-info">
-          <span class="cvh-contact-name" style="display:block">iMessage</span>
-          <span class="cvh-contact-desc" style="display:block">Для владельцев iPhone</span>
-        </span>
-        <span class="cvh-contact-arrow">
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </span>
+      <a href="price.html" class="cvh-svc cvh-x cvh-left">
+        <div class="cvh-svc-ico"><span class="material-symbols-outlined">music_note</span></div>
+        <h3>Сольфеджио и теория</h3>
+        <p>Базовые знания нотной грамоты и теории музыки, развитие музыкального слуха и чувства ритма в доступной форме.</p>
+        <span class="cvh-svc-cta"><span class="lbl">Узнать стоимость</span><span class="material-symbols-outlined">arrow_forward</span></span>
       </a>
-
-      <!-- Instagram -->
-      <a href="https://instagram.com/luchok.dashkenazy" target="_blank" rel="noopener noreferrer" class="cvh-contact cvh-x cvh-right">
-        <span class="cvh-contact-ico">
-          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4"></circle><line x1="18" y1="6" x2="18.01" y2="6"></line></svg>
-        </span>
-        <span class="cvh-contact-info">
-          <span class="cvh-contact-name" style="display:block">Instagram</span>
-          <span class="cvh-contact-desc" style="display:block">Наши уроки</span>
-        </span>
-        <span class="cvh-contact-arrow">
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </span>
-      </a>
-
-      <!-- Location -->
-      <a href="https://yandex.ru/maps/-/CHv5JRNV" target="_blank" rel="noopener noreferrer" class="cvh-contact cvh-x cvh-left">
-        <span class="cvh-contact-ico">
-          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        </span>
-        <span class="cvh-contact-info">
-          <span class="cvh-contact-name" style="display:block">Как найти?</span>
-          <span class="cvh-contact-desc" style="display:block">Студия в Казани</span>
-        </span>
-        <span class="cvh-contact-arrow">
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </span>
+      <a href="price.html#group" class="cvh-svc cvh-x cvh-right">
+        <div class="cvh-svc-ico"><span class="material-symbols-outlined">groups</span></div>
+        <h3>Хор и групповые занятия</h3>
+        <p>Изучение любимых песен, коллективное музицирование, основы многоголосия, развитие слуха, интонации и чувства ансамбля, работа с дыханием и балансом голосов.</p>
+        <span class="cvh-svc-cta"><span class="lbl">Узнать стоимость</span><span class="material-symbols-outlined">arrow_forward</span></span>
       </a>
     </div>
   </section>
 
+  <!-- ABOUT -->
+  <section class="cvh-section cvh-wrap" id="about">
+    <div class="cvh-about-media is-mobile cvh-reveal">
+      <img alt="Дарья Лукьянова - преподаватель вокала и фортепиано в Казани" loading="lazy" decoding="async" width="1200" height="1500" class="cvh-ken" src="images/daria.jpg"/>
+    </div>
+    <div class="cvh-about">
+      <div class="cvh-x cvh-left">
+        <span class="cvh-eyebrow" style="display:block;margin-bottom:clamp(26px,3vw,40px);">ОБО МНЕ</span>
+        <h2 class="cvh-clip">Дарья <br/>Лукьянова</h2>
+        <div class="cvh-about-body">
+          <p>Меня зовут Дарья. Я профессиональный музыкант и дипломированный педагог. Моя методика основана на бережном отношении к голосу, психологическом комфорте и индивидуальном подборе программы.</p>
+        </div>
+        <div class="cvh-about-cta">
+          <a href="https://darialukianova.com/o-sebe" class="cvh-btn"><span class="material-symbols-outlined">person</span>Подробнее обо мне</a>
+        </div>
+        <div class="cvh-stats">
+          <div><span class="num cvh-count" data-target="500" data-suffix="+">0+</span><span class="lbl">УЧЕНИКОВ</span></div>
+          <div><span class="num cvh-count" data-target="10" data-suffix="+">0+</span><span class="lbl">ЛЕТ ОПЫТА</span></div>
+        </div>
+      </div>
+      <div class="cvh-about-media is-desk cvh-x cvh-right">
+        <img alt="Дарья Лукьянова - преподаватель вокала и фортепиано в Казани" loading="lazy" decoding="async" width="1200" height="1500" class="cvh-ken" src="images/daria.jpg"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="cvh-section cvh-wrap">
+    <div class="cvh-head cvh-reveal">
+      <span class="cvh-eyebrow">Галерея</span>
+      <h2 class="cvh-clip">Процесс обучения</h2>
+    </div>
+    <div class="cvh-gallery">
+      <a href="https://darialukianova.com/announcements@fortepiano" class="cvh-shot big cvh-x cvh-left">
+        <img alt="Уроки фортепиано с Дарьей Лукьяновой в Казани" loading="lazy" decoding="async" width="1600" height="1000" class="cvh-ken" src="images/piano.jpg"/>
+        <span class="cvh-shot-tag">ФОРТЕПИАНО</span>
+      </a>
+      <a href="https://darialukianova.com/announcements@vokal" class="cvh-shot tall cvh-x cvh-right">
+        <img alt="Обучение вокалу в Казани с Дарьей Лукьяновой" loading="lazy" decoding="async" width="1200" height="1600" class="cvh-ken" src="images/vokal.jpg"/>
+        <span class="cvh-shot-tag">ВОКАЛ</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cvh-section cvh-wrap cvh-cta" id="contact">
+    <h2 class="cvh-reveal">Готовы начать свое <br/> музыкальное путешествие?</h2>
+    <a class="cvh-cta-big cvh-reveal" href="price.html#individual">ЗАПИСАТЬСЯ НА ПРОБНЫЙ УРОК</a>
+    <p class="cvh-cta-note cvh-reveal">Мы познакомимся, определим ваш уровень и запрос, составим план развития и рекомендации индивидуально для вас.</p>
+  </section>
+
+  <!-- ДОПОЛНИТЕЛЬНО -->
+  <section class="cvh-wrap" style="padding-top:clamp(48px,7vw,96px);padding-bottom:clamp(72px,10vw,140px);">
+    <div class="cvh-reveal" style="max-width:920px;margin:0 auto;">
+      <span class="cvh-eyebrow">ДОПОЛНИТЕЛЬНО</span>
+    </div>
+    <nav class="cvh-links cvh-stagger cvh-reveal">
+      <a href="https://darialukianova.com/comments" class="cvh-link">
+        <span class="cvh-link-idx">01</span>
+        <span class="cvh-link-ico"><span class="material-symbols-outlined">reviews</span></span>
+        <span class="cvh-link-label">ОТЗЫВЫ</span>
+        <span class="cvh-link-arrow material-symbols-outlined">arrow_outward</span>
+      </a>
+      <a href="https://darialukianova.com/podarochnyy-sertifikat" class="cvh-link">
+        <span class="cvh-link-idx">02</span>
+        <span class="cvh-link-ico"><span class="material-symbols-outlined">redeem</span></span>
+        <span class="cvh-link-label">СЕРТИФИКАТ</span>
+        <span class="cvh-link-arrow material-symbols-outlined">arrow_outward</span>
+      </a>
+      <a href="price.html" class="cvh-link">
+        <span class="cvh-link-idx">03</span>
+        <span class="cvh-link-ico"><span class="material-symbols-outlined">payments</span></span>
+        <span class="cvh-link-label">ПРАЙС</span>
+        <span class="cvh-link-arrow material-symbols-outlined">arrow_outward</span>
+      </a>
+      <a href="https://darialukianova.com/contacts" class="cvh-link">
+        <span class="cvh-link-idx">04</span>
+        <span class="cvh-link-ico"><span class="material-symbols-outlined">mail</span></span>
+        <span class="cvh-link-label">КОНТАКТЫ</span>
+        <span class="cvh-link-arrow material-symbols-outlined">arrow_outward</span>
+      </a>
+    </nav>
+  </section>
+
 </div>
 
-<!-- Скрипты: меню + появление при скролле -->
-<script>
-(function(){
-  var root = document.querySelector('.custom-vocal-homepage');
-  var burger = document.getElementById('cvhBurger');
-  var menu = document.getElementById('cvhMenu');
-  var closeBtn = document.getElementById('cvhMenuClose');
-
-  /* МЕНЮ */
-  if(root && burger && menu){
-    function setOpen(open){
-      burger.classList.toggle('is-open', open);
-      menu.classList.toggle('is-open', open);
-      root.classList.toggle('cvh-menu-open', open);
-      document.body.style.overflow = open ? 'hidden' : '';
-      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
-      menu.setAttribute('aria-hidden', open ? 'false' : 'true');
-    }
-    burger.addEventListener('click', function(){ setOpen(!menu.classList.contains('is-open')); });
-    if(closeBtn) closeBtn.addEventListener('click', function(){ setOpen(false); });
-    menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
-    document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && menu.classList.contains('is-open')) setOpen(false); });
-
-    if(!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)){
-      var glyphs = 'АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЭЮЯ';
-      document.querySelectorAll('.cvh-nav-links a').forEach(function(link){
-        var finalText = link.textContent.trim();
-        link.addEventListener('mouseenter', function(){
-          var pos = 0; clearInterval(link._iv);
-          link._iv = setInterval(function(){
-            link.textContent = finalText.split('').map(function(ch,i){
-              return ch === ' ' ? ' ' : (i < pos ? finalText[i] : glyphs[Math.floor(Math.random()*glyphs.length)]);
-            }).join('');
-            pos += 1/2;
-            if(pos >= finalText.length){ clearInterval(link._iv); link.textContent = finalText; }
-          }, 38);
-        });
-        link.addEventListener('mouseleave', function(){ clearInterval(link._iv); link.textContent = finalText; });
-      });
-    }
-  }
-
-  /* ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ */
-  var items = document.querySelectorAll('.cvh-reveal, .cvh-x');
-  if(!('IntersectionObserver' in window) || !items.length){
-    items.forEach(function(el){ el.classList.add('cvh-in'); });
-    return;
-  }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('cvh-in'); io.unobserve(e.target); }
-    });
-  }, { threshold:.12, rootMargin:'0px 0px -8% 0px' });
-  items.forEach(function(el){ io.observe(el); });
-})();
-</script>
+<!-- Скрипт появления при скролле -->
+<script src="script.js?v=3"></script>
 
 </body>
 </html>
